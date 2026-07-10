@@ -1,0 +1,30 @@
+{{> head}}
+
+<main class="main" id="top">
+    {{#if @renderer.isFirstPage}}
+        <section class="hero hero--compact">
+            {{> sparkles}}
+            <div class="hero__kicker-row">
+                <span class="mono-label">{{@config.custom.labelAuthorKicker}}</span>
+            </div>
+            {{#author}}
+                <h1 class="hero__title">{{name}}</h1>
+                {{#if description}}
+                    <div class="hero__intro">
+                        {{{description}}}
+                    </div>
+                {{/if}}
+            {{/author}}
+        </section>
+    {{/if}}
+
+    <section class="feed">
+        {{#each posts}}
+            {{> feed-item}}
+        {{/each}}
+    </section>
+
+    {{> pagination}}
+</main>
+
+{{> footer}}

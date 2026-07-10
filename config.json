@@ -1,0 +1,625 @@
+{
+    "name": "Brut",
+    "version": "1.0.0",
+    "author": "Simon Courtois <https://github.com/imocourtois>",
+    "menus": {
+        "mainMenu": {
+            "desc": "Displayed as pill buttons in the header",
+            "name": "Main menu",
+            "maxLevels": 2
+        },
+        "footerMenu": {
+            "desc": "Monospace link list in the footer",
+            "name": "Footer menu",
+            "maxLevels": 1
+        }
+    },
+    "renderer": {
+        "relatedPostsNumber": 3,
+        "renderRelatedPosts": true,
+        "renderSimilarPosts": false,
+        "renderPrevNextPosts": true,
+        "createContentStructure": true,
+        "createTagPages": true,
+        "createAuthorPages": true,
+        "createTagsList": true,
+        "createSearchPage": false,
+        "create404page": true,
+        "includeFeaturedInPosts": true,
+        "tagsIncludeFeaturedInPosts": true,
+        "authorsIncludeFeaturedInPosts": true,
+        "customHTML": {
+            "afterPost": "After every post",
+            "afterPage": "After every page"
+        }
+    },
+    "supportedFeatures": {
+        "blockEditor": true,
+        "tagsList": true,
+        "tagPages": true,
+        "tagImages": false,
+        "authorPages": true,
+        "authorImages": false,
+        "searchPage": false,
+        "errorPage": true,
+        "customSharing": false,
+        "customComments": true,
+        "embedConsents": false,
+        "pages": true,
+        "postsPage": true
+    },
+    "config": [
+        {
+            "name": "postsPerPage",
+            "label": "Posts per page",
+            "value": 8,
+            "type": "number"
+        },
+        {
+            "name": "tagsPostsPerPage",
+            "label": "Tag pages: posts per page",
+            "value": 8,
+            "type": "number"
+        },
+        {
+            "name": "authorsPostsPerPage",
+            "label": "Author pages: posts per page",
+            "value": 8,
+            "type": "number"
+        },
+        {
+            "name": "excerptLength",
+            "label": "Excerpt length",
+            "value": 30,
+            "type": "number"
+        },
+        {
+            "name": "logo",
+            "label": "Website logo",
+            "note": "Optional. If empty, the site name is displayed as a black label in the header.",
+            "value": "",
+            "type": "upload",
+            "upload": true
+        }
+    ],
+    "customConfig": [
+        {
+            "name": "heroKicker",
+            "label": "Kicker (small monospace line)",
+            "group": "Hero",
+            "note": "Small uppercase monospace label displayed above the big title, e.g. 'BLOG — SINCE 2026'",
+            "value": "",
+            "type": "text"
+        },
+        {
+            "name": "heroTitle",
+            "label": "Big title",
+            "group": "Hero",
+            "note": "The huge condensed headline on the front page. Leave empty to use the site name.",
+            "value": "",
+            "type": "text"
+        },
+        {
+            "name": "heroIntro",
+            "label": "Intro text",
+            "group": "Hero",
+            "note": "Short paragraph displayed under the big title. Wrap the less important part in <em> to render it in a lighter color.",
+            "value": "",
+            "type": "wysiwyg"
+        },
+        {
+            "name": "featuredCard",
+            "label": "Highlight the first post as a pastel card",
+            "group": "Hero",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "colorBg",
+            "label": "Background (cream)",
+            "group": "Colors",
+            "value": "#f9f4eb",
+            "type": "colorpicker"
+        },
+        {
+            "name": "colorInk",
+            "label": "Ink (text)",
+            "group": "Colors",
+            "value": "#0a0a0a",
+            "type": "colorpicker"
+        },
+        {
+            "name": "colorAccent",
+            "label": "Accent",
+            "group": "Colors",
+            "value": "#f2e338",
+            "type": "colorpicker"
+        },
+        {
+            "name": "colorPastel1",
+            "label": "Pastel 1",
+            "group": "Colors",
+            "value": "#dcd6f7",
+            "type": "colorpicker"
+        },
+        {
+            "name": "colorPastel2",
+            "label": "Pastel 2",
+            "group": "Colors",
+            "value": "#f8d1ee",
+            "type": "colorpicker"
+        },
+        {
+            "name": "colorPastel3",
+            "label": "Pastel 3",
+            "group": "Colors",
+            "value": "#f7dfa8",
+            "type": "colorpicker"
+        },
+        {
+            "name": "uppercaseTitles",
+            "label": "Uppercase titles",
+            "group": "Typography",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "minFontSize",
+            "label": "Minimum font size (rem)",
+            "group": "Typography",
+            "value": "1",
+            "type": "range",
+            "min": 0.8,
+            "max": 1.5,
+            "step": 0.05
+        },
+        {
+            "name": "maxFontSize",
+            "label": "Maximum font size (rem)",
+            "group": "Typography",
+            "value": "1.125",
+            "type": "range",
+            "min": 0.8,
+            "max": 2,
+            "step": 0.05
+        },
+        {
+            "name": "footerCity",
+            "label": "Footer clock label",
+            "group": "Footer",
+            "note": "A live clock is displayed in the footer, followed by this label, e.g. 'PARIS'. Leave empty to hide the clock.",
+            "value": "",
+            "type": "text"
+        },
+        {
+            "name": "copyrightText",
+            "label": "Copyright text",
+            "group": "Footer",
+            "value": "Powered by <a href=\"https://getpublii.com\" target=\"_blank\" rel=\"noopener\">Publii</a>",
+            "type": "wysiwyg"
+        },
+        {
+            "name": "backToTop",
+            "label": "Show 'back to top' link",
+            "group": "Footer",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "labelMenu",
+            "label": "Menu toggle",
+            "group": "Labels",
+            "value": "Menu",
+            "type": "text"
+        },
+        {
+            "name": "labelReadMore",
+            "label": "Read more",
+            "group": "Labels",
+            "value": "Read",
+            "type": "text"
+        },
+        {
+            "name": "labelNewerPosts",
+            "label": "Newer posts",
+            "group": "Labels",
+            "value": "Newer",
+            "type": "text"
+        },
+        {
+            "name": "labelOlderPosts",
+            "label": "Older posts",
+            "group": "Labels",
+            "value": "Older",
+            "type": "text"
+        },
+        {
+            "name": "labelPublishedOn",
+            "label": "Published on",
+            "group": "Labels",
+            "value": "Published",
+            "type": "text"
+        },
+        {
+            "name": "labelUpdatedOn",
+            "label": "Updated on",
+            "group": "Labels",
+            "value": "Updated",
+            "type": "text"
+        },
+        {
+            "name": "labelTags",
+            "label": "Tags heading",
+            "group": "Labels",
+            "value": "Tags",
+            "type": "text"
+        },
+        {
+            "name": "labelRelatedPosts",
+            "label": "Related posts heading",
+            "group": "Labels",
+            "value": "Keep reading",
+            "type": "text"
+        },
+        {
+            "name": "labelPreviousPost",
+            "label": "Previous post",
+            "group": "Labels",
+            "value": "Previous",
+            "type": "text"
+        },
+        {
+            "name": "labelNextPost",
+            "label": "Next post",
+            "group": "Labels",
+            "value": "Next",
+            "type": "text"
+        },
+        {
+            "name": "labelAllPosts",
+            "label": "All posts by author",
+            "group": "Labels",
+            "value": "All posts",
+            "type": "text"
+        },
+        {
+            "name": "labelBackToTop",
+            "label": "Back to top",
+            "group": "Labels",
+            "value": "Back to top",
+            "type": "text"
+        },
+        {
+            "name": "labelPostsIn",
+            "label": "Tag page kicker",
+            "group": "Labels",
+            "value": "Posts tagged",
+            "type": "text"
+        },
+        {
+            "name": "labelAuthorKicker",
+            "label": "Author page kicker",
+            "group": "Labels",
+            "value": "Posts by",
+            "type": "text"
+        },
+        {
+            "name": "labelNotFound",
+            "label": "404 message",
+            "group": "Labels",
+            "value": "This page does not exist.",
+            "type": "text"
+        },
+        {
+            "name": "labelBackHome",
+            "label": "404 back link",
+            "group": "Labels",
+            "value": "Back to home",
+            "type": "text"
+        },
+        {
+            "name": "formatDate",
+            "label": "Date format",
+            "group": "Additional",
+            "value": "D MMM YYYY",
+            "type": "select",
+            "options": [
+                {
+                    "label": "Nov 1, 2026",
+                    "value": "MMM D, YYYY"
+                },
+                {
+                    "label": "1 Nov 2026",
+                    "value": "D MMM YYYY"
+                },
+                {
+                    "label": "November 1, 2026",
+                    "value": "MMMM D, YYYY"
+                },
+                {
+                    "label": "1 November 2026",
+                    "value": "D MMMM YYYY"
+                },
+                {
+                    "label": "11/01/2026",
+                    "value": "MM/DD/YYYY"
+                },
+                {
+                    "label": "01/11/2026",
+                    "value": "DD/MM/YYYY"
+                },
+                {
+                    "label": "2026-11-01",
+                    "value": "YYYY-MM-DD"
+                },
+                {
+                    "label": "Custom - create your own date format",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "name": "formatDateCustom",
+            "group": "Additional",
+            "label": "Custom date format",
+            "note": "More details <a href='https://github.com/taylorhakes/fecha' target='_blank'>here.</a>",
+            "value": "DD/MM/YYYY",
+            "type": "text",
+            "dependencies": [{
+                "field": "formatDate",
+                "value": "custom"
+            }]
+        },
+        {
+            "name": "faviconUpload",
+            "label": "Upload favicon file",
+            "group": "Additional",
+            "note": "Save your favicon as either favicon.png or favicon.ico",
+            "value": "",
+            "type": "smallupload",
+            "upload": true
+        },
+        {
+            "name": "faviconExtension",
+            "label": "Favicon extension",
+            "group": "Additional",
+            "value": "image/x-icon",
+            "type": "select",
+            "options": [
+                {
+                    "label": ".ico",
+                    "value": "image/x-icon"
+                },
+                {
+                    "label": ".png",
+                    "value": "image/png"
+                }
+            ]
+        }
+    ],
+    "postConfig": [
+        {
+            "name": "displayDate",
+            "label": "Display date",
+            "value": 1,
+            "type": "select",
+            "options": [
+                { "label": "Enabled", "value": 1 },
+                { "label": "Disabled", "value": 0 }
+            ]
+        },
+        {
+            "name": "displayAuthor",
+            "label": "Display author name",
+            "value": 1,
+            "type": "select",
+            "options": [
+                { "label": "Enabled", "value": 1 },
+                { "label": "Disabled", "value": 0 }
+            ]
+        },
+        {
+            "name": "displayLastUpdatedDate",
+            "label": "Display last updated date",
+            "value": 0,
+            "type": "select",
+            "options": [
+                { "label": "Enabled", "value": 1 },
+                { "label": "Disabled", "value": 0 }
+            ]
+        },
+        {
+            "name": "displayTags",
+            "label": "Display tags",
+            "value": 1,
+            "type": "select",
+            "options": [
+                { "label": "Enabled", "value": 1 },
+                { "label": "Disabled", "value": 0 }
+            ]
+        },
+        {
+            "name": "displayAuthorBio",
+            "label": "Display author bio",
+            "value": 1,
+            "type": "select",
+            "options": [
+                { "label": "Enabled", "value": 1 },
+                { "label": "Disabled", "value": 0 }
+            ]
+        },
+        {
+            "name": "displayPostNavigation",
+            "label": "Display previous/next navigation",
+            "value": 1,
+            "type": "select",
+            "options": [
+                { "label": "Enabled", "value": 1 },
+                { "label": "Disabled", "value": 0 }
+            ]
+        },
+        {
+            "name": "displayRelatedPosts",
+            "label": "Display related posts",
+            "value": 1,
+            "type": "select",
+            "options": [
+                { "label": "Enabled", "value": 1 },
+                { "label": "Disabled", "value": 0 }
+            ]
+        },
+        {
+            "name": "displayComments",
+            "label": "Display comments",
+            "value": 0,
+            "type": "select",
+            "options": [
+                { "label": "Enabled", "value": 1 },
+                { "label": "Disabled", "value": 0 }
+            ]
+        }
+    ],
+    "pageConfig": [
+        {
+            "name": "displayDate",
+            "label": "Display date",
+            "value": 0,
+            "type": "select",
+            "options": [
+                { "label": "Enabled", "value": 1 },
+                { "label": "Disabled", "value": 0 }
+            ]
+        },
+        {
+            "name": "displayAuthor",
+            "label": "Display author name",
+            "value": 0,
+            "type": "select",
+            "options": [
+                { "label": "Enabled", "value": 1 },
+                { "label": "Disabled", "value": 0 }
+            ]
+        },
+        {
+            "name": "displayLastUpdatedDate",
+            "label": "Display last updated date",
+            "value": 0,
+            "type": "select",
+            "options": [
+                { "label": "Enabled", "value": 1 },
+                { "label": "Disabled", "value": 0 }
+            ]
+        },
+        {
+            "name": "displayComments",
+            "label": "Display comments",
+            "value": 0,
+            "type": "select",
+            "options": [
+                { "label": "Enabled", "value": 1 },
+                { "label": "Disabled", "value": 0 }
+            ]
+        }
+    ],
+    "files": {
+        "ignoreAssets": [".DS_Store"],
+        "assetsPath": "assets",
+        "partialsPath": "partials",
+        "responsiveImages": {
+            "contentImages": {
+                "sizes": "(max-width: 56em) 100vw, 840px",
+                "dimensions": {
+                    "xs": {
+                        "width": 480,
+                        "height": "auto"
+                    },
+                    "sm": {
+                        "width": 840,
+                        "height": "auto"
+                    },
+                    "md": {
+                        "width": 1280,
+                        "height": "auto"
+                    }
+                }
+            },
+            "featuredImages": {
+                "sizes": {
+                    "post": "(max-width: 84em) 100vw, 1280px",
+                    "listing": "(max-width: 48em) 100vw, 640px"
+                },
+                "dimensions": {
+                    "xs": {
+                        "width": 480,
+                        "height": "auto",
+                        "group": "post,listing"
+                    },
+                    "sm": {
+                        "width": 840,
+                        "height": "auto",
+                        "group": "post,listing"
+                    },
+                    "md": {
+                        "width": 1280,
+                        "height": "auto",
+                        "group": "post"
+                    },
+                    "lg": {
+                        "width": 1600,
+                        "height": "auto",
+                        "group": "post"
+                    }
+                }
+            },
+            "optionImages": {
+                "sizes": "(max-width: 84em) 100vw, 1280px",
+                "dimensions": {
+                    "xs": {
+                        "width": 480,
+                        "height": "auto"
+                    },
+                    "sm": {
+                        "width": 840,
+                        "height": "auto"
+                    },
+                    "md": {
+                        "width": 1280,
+                        "height": "auto"
+                    }
+                }
+            }
+        }
+    },
+    "customElements": [
+        {
+            "label": "Marker (black highlight)",
+            "cssClasses": "mrk",
+            "selector": "p"
+        },
+        {
+            "label": "Mono label",
+            "cssClasses": "label-mono",
+            "selector": "p"
+        },
+        {
+            "label": "Box — pastel 1",
+            "cssClasses": "msg msg--p1",
+            "selector": "p"
+        },
+        {
+            "label": "Box — pastel 2",
+            "cssClasses": "msg msg--p2",
+            "selector": "p"
+        },
+        {
+            "label": "Box — pastel 3",
+            "cssClasses": "msg msg--p3",
+            "selector": "p"
+        },
+        {
+            "label": "Big statement",
+            "cssClasses": "statement",
+            "selector": "p"
+        }
+    ]
+}

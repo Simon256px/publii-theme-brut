@@ -1,0 +1,169 @@
+{{> head}}
+
+<main class="main" id="top">
+    {{#post}}
+        <article class="post">
+            <header class="post__header">
+                {{> sparkles}}
+
+                {{#checkIfAny @config.post.displayDate @config.post.displayAuthor @config.post.displayTags}}
+                    <div class="post__meta">
+                        {{#if @config.post.displayDate}}
+                            <span class="mono-label">
+                                {{@config.custom.labelPublishedOn}}
+                                <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}">
+                                    {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                                        {{date createdAt @config.custom.formatDate}}
+                                    {{else}}
+                                        {{date createdAt @config.custom.formatDateCustom}}
+                                    {{/checkIf}}
+                                </time>
+                            </span>
+                        {{/if}}
+                        {{#if @config.post.displayAuthor}}
+                            <span class="mono-label" aria-hidden="true">&#10022;</span>
+                            {{#author}}
+                                <a class="mono-label" href="{{url}}" rel="author">{{name}}</a>
+                            {{/author}}
+                        {{/if}}
+                        {{#if @config.post.displayTags}}
+                            {{#if tags}}
+                                <span class="mono-label" aria-hidden="true">&#10022;</span>
+                                {{#each tags}}
+                                    <a class="mono-label" href="{{url}}">{{name}}</a>
+                                {{/each}}
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                {{/checkIfAny}}
+
+                <h1 class="post__title">{{title}}</h1>
+            </header>
+
+            {{#featuredImage}}
+                {{#if url}}
+                    <figure class="post__featured">
+                        <img src="{{url}}"
+                             {{#if @config.site.responsiveImages}}
+                                 {{responsiveImageAttributes 'featuredImage' srcset.post sizes.post}}
+                             {{/if}}
+                             {{lazyload "eager"}}
+                             height="{{height}}"
+                             width="{{width}}"
+                             alt="{{alt}}">
+                        {{#checkIfAny caption credits}}
+                            <figcaption class="mono-label">
+                                {{caption}}
+                                {{credits}}
+                            </figcaption>
+                        {{/checkIfAny}}
+                    </figure>
+                {{/if}}
+            {{/featuredImage}}
+
+            <div class="entry post__entry">
+                {{{text}}}
+            </div>
+
+            <footer class="post__footer">
+                {{#if @config.post.displayLastUpdatedDate}}
+                    {{#if modifiedAt}}
+                        <p class="mono-label post__updated">
+                            {{@config.custom.labelUpdatedOn}}
+                            {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                                {{date modifiedAt @config.custom.formatDate}}
+                            {{else}}
+                                {{date modifiedAt @config.custom.formatDateCustom}}
+                            {{/checkIf}}
+                        </p>
+                    {{/if}}
+                {{/if}}
+
+                {{#if @config.post.displayTags}}
+                    {{#if tags}}
+                        <div class="post__tags">
+                            <span class="mono-label">{{@config.custom.labelTags}}</span>
+                            <ul class="pill-list">
+                                {{#each tags}}
+                                    <li><a href="{{url}}" class="pill">{{name}}</a></li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    {{/if}}
+                {{/if}}
+
+                {{#if @config.post.displayAuthorBio}}
+                    {{#author}}
+                        <div class="bio">
+                            {{#if avatar}}
+                                <img src="{{avatar}}" class="bio__avatar" alt="{{name}}" loading="lazy">
+                            {{/if}}
+                            <div class="bio__body">
+                                <h3 class="bio__name"><a href="{{url}}" rel="author">{{name}}</a></h3>
+                                {{#if description}}
+                                    <div class="bio__desc">{{{description}}}</div>
+                                {{/if}}
+                                <a href="{{url}}" class="pill">{{@config.custom.labelAllPosts}} &rarr;</a>
+                            </div>
+                        </div>
+                    {{/author}}
+                {{/if}}
+            </footer>
+        </article>
+
+        {{#if @config.post.displayComments}}
+            <div class="comments">
+                {{{@commentsCustomCode}}}
+            </div>
+        {{/if}}
+
+        {{#if @config.post.displayPostNavigation}}
+            {{#checkIfAny ../previousPost ../nextPost}}
+                <nav class="post-nav">
+                    {{#../previousPost}}
+                        <a href="{{url}}" class="post-nav__item post-nav__item--prev" rel="prev">
+                            <span class="mono-label">&larr; {{@config.custom.labelPreviousPost}}</span>
+                            <span class="post-nav__title">{{title}}</span>
+                        </a>
+                    {{/../previousPost}}
+                    {{#../nextPost}}
+                        <a href="{{url}}" class="post-nav__item post-nav__item--next" rel="next">
+                            <span class="mono-label">{{@config.custom.labelNextPost}} &rarr;</span>
+                            <span class="post-nav__title">{{title}}</span>
+                        </a>
+                    {{/../nextPost}}
+                </nav>
+            {{/checkIfAny}}
+        {{/if}}
+
+        {{#if @config.post.displayRelatedPosts}}
+            {{#if ../relatedPosts}}
+                <section class="related">
+                    <h2 class="section-title">{{@config.custom.labelRelatedPosts}}</h2>
+                    <div class="related__grid">
+                        {{#each ../relatedPosts}}
+                            <article class="related__card">
+                                <time class="mono-label" datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}">
+                                    {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                                        {{date createdAt @config.custom.formatDate}}
+                                    {{else}}
+                                        {{date createdAt @config.custom.formatDateCustom}}
+                                    {{/checkIf}}
+                                </time>
+                                <h3 class="related__title"><a href="{{url}}">{{title}}</a></h3>
+                            </article>
+                        {{/each}}
+                    </div>
+                </section>
+            {{/if}}
+        {{/if}}
+    {{/post}}
+
+    {{#if @customHTML.afterPost}}
+        <div class="banner banner--after-post">
+            {{{@customHTML.afterPost}}}
+        </div>
+    {{/if}}
+</main>
+
+{{> footer}}

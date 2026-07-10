@@ -1,0 +1,14 @@
+{{> head}}
+
+<main class="main" id="top">
+    <section class="hero error-hero">
+        {{> sparkles}}
+        <h1 class="hero__title hero__title--404">404</h1>
+        <p class="mono-label">{{@config.custom.labelNotFound}}</p>
+        <p class="error-hero__action">
+            <a href="{{@website.url}}" class="pill pill--big pill--accent">&larr; {{@config.custom.labelBackHome}}</a>
+        </p>
+    </section>
+</main>
+
+{{> footer}}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="{{ @website.language }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{#if title}}
+        <title>{{title}}</title>
+    {{else}}
+        <title>{{@website.name}}</title>
+    {{/if}}
+    {{metaDescription}}
+    {{metaRobots}}
+    {{{publiiHead}}}
+    {{canonicalLink}}
+    {{feedLink}}
+    {{socialMetaTags}}
+    {{#if @config.custom.faviconUpload}}
+        <link rel="shortcut icon" href="{{@config.custom.faviconUpload}}" type="{{@config.custom.faviconExtension}}">
+    {{/if}}
+    {{#if @pagination}}
+        {{#if @pagination.previousPage}}
+            <link rel="prev" href="{{@pagination.previousPageUrl}}">
+        {{/if}}
+        {{#if @pagination.nextPage}}
+            <link rel="next" href="{{@pagination.nextPageUrl}}">
+        {{/if}}
+    {{/if}}
+    <link rel="stylesheet" href="{{css "style.css"}}">
+    <style>
+        :root {
+            --bg: {{@config.custom.colorBg}};
+            --ink: {{@config.custom.colorInk}};
+            --accent: {{@config.custom.colorAccent}};
+            --pastel-1: {{@config.custom.colorPastel1}};
+            --pastel-2: {{@config.custom.colorPastel2}};
+            --pastel-3: {{@config.custom.colorPastel3}};
+            --fs-min: {{@config.custom.minFontSize}}rem;
+            --fs-max: {{@config.custom.maxFontSize}}rem;
+            {{#checkIfNone @config.custom.uppercaseTitles}}--title-case: none;{{else}}--title-case: uppercase;{{/checkIfNone}}
+        }
+    </style>
+    {{jsonLD}}
+    {{{@headCustomCode}}}
+</head>
+<body class="{{#is "index"}}is-home{{/is}}{{#is "post"}}is-post{{/is}}{{#is "page"}}is-page{{/is}}{{#is "tag"}}is-tag{{/is}}{{#is "tags"}}is-tags{{/is}}{{#is "author"}}is-author{{/is}}{{#is "404"}}is-404{{/is}}">
+    {{{@bodyCustomCode}}}
+    {{> navbar}}

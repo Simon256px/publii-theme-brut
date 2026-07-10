@@ -1,0 +1,83 @@
+{{> head}}
+
+<main class="main" id="top">
+    {{#if @renderer.isFirstPage}}
+        <section class="hero">
+            {{> sparkles}}
+            <div class="hero__kicker-row">
+                {{#if @config.custom.heroKicker}}
+                    <span class="mono-label">{{@config.custom.heroKicker}}</span>
+                {{/if}}
+            </div>
+            <h1 class="hero__title">
+                {{#if @config.custom.heroTitle}}
+                    {{@config.custom.heroTitle}}
+                {{else}}
+                    {{@website.name}}
+                {{/if}}
+            </h1>
+            {{#if @config.custom.heroIntro}}
+                <div class="hero__intro">
+                    {{{@config.custom.heroIntro}}}
+                </div>
+            {{/if}}
+        </section>
+    {{/if}}
+
+    <section class="feed">
+        {{#each posts}}
+            {{#checkIfAll @first @renderer.isFirstPage @config.custom.featuredCard}}
+                <article class="feature-card">
+                    <div class="feature-card__body">
+                        <div class="feature-card__meta">
+                            <time class="mono-label" datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}">
+                                {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                                    {{date createdAt @config.custom.formatDate}}
+                                {{else}}
+                                    {{date createdAt @config.custom.formatDateCustom}}
+                                {{/checkIf}}
+                            </time>
+                            <span class="mono-label" aria-hidden="true">&#10022;</span>
+                            {{#if tags}}
+                                <span class="mono-label">{{#each tags}}{{#if @first}}{{name}}{{/if}}{{/each}}</span>
+                            {{/if}}
+                        </div>
+                        <h2 class="feature-card__title">
+                            <a href="{{url}}">{{title}}</a>
+                        </h2>
+                        {{#if excerpt}}
+                            <div class="feature-card__excerpt">
+                                {{#if hasCustomExcerpt}}
+                                    {{{excerpt}}}
+                                {{else}}
+                                    <p>{{{excerpt}}}</p>
+                                {{/if}}
+                            </div>
+                        {{/if}}
+                        <a href="{{url}}" class="pill pill--accent">&#8627; {{@config.custom.labelReadMore}}</a>
+                    </div>
+                    {{#featuredImage}}
+                        {{#if url}}
+                            <a href="{{../url}}" class="feature-card__image" tabindex="-1" aria-hidden="true">
+                                <img src="{{url}}"
+                                     {{#if @config.site.responsiveImages}}
+                                         {{responsiveImageAttributes 'featuredImage' srcset.listing sizes.listing}}
+                                     {{/if}}
+                                     {{lazyload "eager"}}
+                                     height="{{height}}"
+                                     width="{{width}}"
+                                     alt="{{alt}}">
+                            </a>
+                        {{/if}}
+                    {{/featuredImage}}
+                </article>
+            {{else}}
+                {{> feed-item}}
+            {{/checkIfAll}}
+        {{/each}}
+    </section>
+
+    {{> pagination}}
+</main>
+
+{{> footer}}

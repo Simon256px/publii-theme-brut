@@ -1,0 +1,30 @@
+<article class="feed-item">
+    <div class="feed-item__meta">
+        <time class="mono-label" datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}">
+            {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                {{date createdAt @config.custom.formatDate}}
+            {{else}}
+                {{date createdAt @config.custom.formatDateCustom}}
+            {{/checkIf}}
+        </time>
+        {{#if tags}}
+            <span class="feed-item__tags mono-label">
+                {{#each tags}}{{#if @first}}{{name}}{{/if}}{{/each}}
+            </span>
+        {{/if}}
+    </div>
+
+    <h2 class="feed-item__title">
+        <a href="{{url}}">{{title}}<span class="feed-item__arrow" aria-hidden="true">&nearr;</span></a>
+    </h2>
+
+    {{#if excerpt}}
+        <div class="feed-item__excerpt">
+            {{#if hasCustomExcerpt}}
+                {{{excerpt}}}
+            {{else}}
+                <p>{{{excerpt}}}</p>
+            {{/if}}
+        </div>
+    {{/if}}
+</article>

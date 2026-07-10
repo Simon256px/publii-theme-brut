@@ -1,0 +1,48 @@
+    <footer class="footer">
+        <div class="footer__grid">
+            <nav class="footer__links">
+                {{#if menus.footerMenu}}
+                    <ul class="footer__menu">
+                        {{#each menus.footerMenu.items}}
+                            <li>
+                                {{#if link}}
+                                    <a href="{{menuUrl}}"
+                                       {{#if target}}target="{{target}}"{{/if}}
+                                       {{#if rel}}rel="{{rel}}"{{/if}}>{{label}}{{#checkIf target '==' '_blank'}}<span class="footer__ext" aria-hidden="true">&nearr;</span>{{/checkIf}}</a>
+                                {{else}}
+                                    <span>{{label}}</span>
+                                {{/if}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                {{/if}}
+            </nav>
+
+            {{#if @config.custom.backToTop}}
+                <a href="#top" class="footer__top js-back-to-top">
+                    {{@config.custom.labelBackToTop}} <span aria-hidden="true">&#8613;&nbsp;&#8613;&nbsp;&#8613;</span>
+                </a>
+            {{/if}}
+        </div>
+
+        <div class="footer__bar">
+            <div class="footer__copyright">
+                {{{@config.custom.copyrightText}}}
+            </div>
+            {{#if @config.custom.footerCity}}
+                <div class="footer__clock">
+                    <span class="js-clock"></span> {{@config.custom.footerCity}}
+                </div>
+            {{/if}}
+        </div>
+
+        <div class="sparkles sparkles--footer" aria-hidden="true">
+            <span>&#10022;</span><span>&#10022;</span><span>&#10022;</span><span>&#10022;</span>
+        </div>
+    </footer>
+
+    <script defer src="{{js "scripts.js"}}"></script>
+    {{{@footerCustomCode}}}
+    {{{publiiFooter}}}
+</body>
+</html>

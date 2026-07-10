@@ -1,0 +1,86 @@
+{{> head}}
+
+<main class="main" id="top">
+    {{#page}}
+        <article class="post">
+            <header class="post__header">
+                {{> sparkles}}
+
+                {{#checkIfAny @config.page.displayDate @config.page.displayAuthor}}
+                    <div class="post__meta">
+                        {{#if @config.page.displayDate}}
+                            <span class="mono-label">
+                                <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}">
+                                    {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                                        {{date createdAt @config.custom.formatDate}}
+                                    {{else}}
+                                        {{date createdAt @config.custom.formatDateCustom}}
+                                    {{/checkIf}}
+                                </time>
+                            </span>
+                        {{/if}}
+                        {{#if @config.page.displayAuthor}}
+                            {{#author}}
+                                <a class="mono-label" href="{{url}}" rel="author">{{name}}</a>
+                            {{/author}}
+                        {{/if}}
+                    </div>
+                {{/checkIfAny}}
+
+                <h1 class="post__title">{{title}}</h1>
+            </header>
+
+            {{#featuredImage}}
+                {{#if url}}
+                    <figure class="post__featured">
+                        <img src="{{url}}"
+                             {{#if @config.site.responsiveImages}}
+                                 {{responsiveImageAttributes 'featuredImage' srcset.post sizes.post}}
+                             {{/if}}
+                             {{lazyload "eager"}}
+                             height="{{height}}"
+                             width="{{width}}"
+                             alt="{{alt}}">
+                        {{#checkIfAny caption credits}}
+                            <figcaption class="mono-label">
+                                {{caption}}
+                                {{credits}}
+                            </figcaption>
+                        {{/checkIfAny}}
+                    </figure>
+                {{/if}}
+            {{/featuredImage}}
+
+            <div class="entry post__entry">
+                {{{text}}}
+            </div>
+
+            {{#if @config.page.displayLastUpdatedDate}}
+                {{#if modifiedAt}}
+                    <p class="mono-label post__updated">
+                        {{@config.custom.labelUpdatedOn}}
+                        {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                            {{date modifiedAt @config.custom.formatDate}}
+                        {{else}}
+                            {{date modifiedAt @config.custom.formatDateCustom}}
+                        {{/checkIf}}
+                    </p>
+                {{/if}}
+            {{/if}}
+        </article>
+
+        {{#if @config.page.displayComments}}
+            <div class="comments">
+                {{{@commentsCustomCode}}}
+            </div>
+        {{/if}}
+    {{/page}}
+
+    {{#if @customHTML.afterPage}}
+        <div class="banner banner--after-page">
+            {{{@customHTML.afterPage}}}
+        </div>
+    {{/if}}
+</main>
+
+{{> footer}}

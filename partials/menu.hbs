@@ -1,0 +1,21 @@
+<ul {{#if level}}class="nav__submenu"{{else}}class="nav__menu"{{/if}}>
+    {{#each items}}
+        <li{{menuItemClasses}}>
+            {{#if link}}
+                <a href="{{menuUrl}}"
+                   class="pill"
+                   {{#if title}}title="{{title}}"{{/if}}
+                   {{#if target}}target="{{target}}"{{/if}}
+                   {{#if rel}}rel="{{rel}}"{{/if}}
+                   {{#if items}}aria-haspopup="true" aria-expanded="false"{{/if}}>{{label}}</a>
+            {{else}}
+                <span class="pill pill--static"
+                      {{#if title}}title="{{title}}"{{/if}}
+                      {{#if items}}aria-haspopup="true" aria-expanded="false" tabindex="0" role="button"{{/if}}>{{label}}</span>
+            {{/if}}
+            {{#if items}}
+                {{> menu}}
+            {{/if}}
+        </li>
+    {{/each}}
+</ul>

@@ -1,0 +1,17 @@
+{{#if @pagination}}
+    {{#checkIfAny @pagination.previousPage @pagination.nextPage}}
+        <nav class="pagination">
+            {{#if @pagination.previousPage}}
+                <a href="{{@pagination.previousPageUrl}}" class="pill pill--big">
+                    &larr; {{@config.custom.labelNewerPosts}}
+                </a>
+            {{/if}}
+            <span class="pagination__counter">{{@pagination.currentPage}} / {{@pagination.totalPages}}</span>
+            {{#if @pagination.nextPage}}
+                <a href="{{@pagination.nextPageUrl}}" class="pill pill--big">
+                    {{@config.custom.labelOlderPosts}} &rarr;
+                </a>
+            {{/if}}
+        </nav>
+    {{/checkIfAny}}
+{{/if}}
