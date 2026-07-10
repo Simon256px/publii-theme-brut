@@ -1,7 +1,7 @@
 {
     "name": "Brut",
     "version": "1.0.0",
-    "author": "Simon Courtois <https://github.com/imocourtois>",
+    "author": "Simon Courtois <https://github.com/Simon256px>",
     "menus": {
         "mainMenu": {
             "desc": "Displayed as pill buttons in the header",

@@ -31,10 +31,10 @@ Clone this repository into Publii's themes directory, then restart Publii:
 
 ```
 # Windows
-git clone https://github.com/imocourtois/publii-theme-brut "%USERPROFILE%\Documents\Publii\themes\brut"
+git clone https://github.com/Simon256px/publii-theme-brut "%USERPROFILE%\Documents\Publii\themes\brut"
 
 # macOS / Linux
-git clone https://github.com/imocourtois/publii-theme-brut ~/Documents/Publii/themes/brut
+git clone https://github.com/Simon256px/publii-theme-brut ~/Documents/Publii/themes/brut
 ```
 
 ## Theme settings overview
