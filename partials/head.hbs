@@ -25,6 +25,13 @@
             <link rel="next" href="{{@pagination.nextPageUrl}}">
         {{/if}}
     {{/if}}
+    <script>
+        (function () {
+            var scheme = null;
+            try { scheme = localStorage.getItem('brut-color-scheme'); } catch (e) {}
+            document.documentElement.setAttribute('data-scheme', scheme || '{{@config.custom.colorScheme}}');
+        })();
+    </script>
     <link rel="stylesheet" href="{{css "style.css"}}">
     <style>
         :root {
@@ -37,6 +44,18 @@
             --fs-min: {{@config.custom.minFontSize}}rem;
             --fs-max: {{@config.custom.maxFontSize}}rem;
             {{#checkIfNone @config.custom.uppercaseTitles}}--title-case: none;{{else}}--title-case: uppercase;{{/checkIfNone}}
+        }
+
+        :root[data-scheme="dark"] {
+            --bg: {{@config.custom.colorBgDark}};
+            --ink: {{@config.custom.colorInkDark}};
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root[data-scheme="auto"] {
+                --bg: {{@config.custom.colorBgDark}};
+                --ink: {{@config.custom.colorInkDark}};
+            }
         }
     </style>
     {{jsonLD}}

@@ -7,9 +7,16 @@
         {{/if}}
     </a>
 
-    <button class="topbar__toggle js-nav-toggle" aria-expanded="false" aria-controls="site-nav">
-        {{@config.custom.labelMenu}}
-    </button>
+    <div class="topbar__actions">
+        {{#if @config.custom.showThemeToggle}}
+            <button class="topbar__scheme js-scheme-toggle" aria-label="{{@config.custom.labelThemeToggle}}">
+                <span aria-hidden="true">&#9681;</span>
+            </button>
+        {{/if}}
+        <button class="topbar__toggle js-nav-toggle" aria-expanded="false" aria-controls="site-nav">
+            {{@config.custom.labelMenu}}
+        </button>
+    </div>
 
     <nav class="nav js-nav" id="site-nav">
         {{> menu menus.mainMenu}}

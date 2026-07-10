@@ -1,6 +1,6 @@
 {
     "name": "Brut",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "author": "Simon Courtois <https://github.com/Simon256px>",
     "menus": {
         "mainMenu": {
@@ -115,17 +115,51 @@
             "type": "checkbox"
         },
         {
+            "name": "colorScheme",
+            "label": "Color scheme",
+            "group": "Colors",
+            "note": "'Auto' follows the visitor's system preference.",
+            "value": "auto",
+            "type": "select",
+            "options": [
+                { "label": "Auto (system)", "value": "auto" },
+                { "label": "Light", "value": "light" },
+                { "label": "Dark", "value": "dark" }
+            ]
+        },
+        {
+            "name": "showThemeToggle",
+            "label": "Show light/dark toggle in the header",
+            "group": "Colors",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
             "name": "colorBg",
-            "label": "Background (cream)",
+            "label": "Background — light (cream)",
             "group": "Colors",
             "value": "#f9f4eb",
             "type": "colorpicker"
         },
         {
             "name": "colorInk",
-            "label": "Ink (text)",
+            "label": "Ink — light (text)",
             "group": "Colors",
-            "value": "#0a0a0a",
+            "value": "#171512",
+            "type": "colorpicker"
+        },
+        {
+            "name": "colorBgDark",
+            "label": "Background — dark",
+            "group": "Colors",
+            "value": "#161412",
+            "type": "colorpicker"
+        },
+        {
+            "name": "colorInkDark",
+            "label": "Ink — dark (text)",
+            "group": "Colors",
+            "value": "#f2ede3",
             "type": "colorpicker"
         },
         {
@@ -210,6 +244,13 @@
             "label": "Menu toggle",
             "group": "Labels",
             "value": "Menu",
+            "type": "text"
+        },
+        {
+            "name": "labelThemeToggle",
+            "label": "Light/dark toggle (accessible label)",
+            "group": "Labels",
+            "value": "Switch between light and dark mode",
             "type": "text"
         },
         {
